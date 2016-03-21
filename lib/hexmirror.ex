@@ -7,10 +7,8 @@ defmodule HexMirror do
     start_httpc()
 
     children = [
-      #supervisor(HexWeb.Repo, []),
-      #supervisor(Task.Supervisor, [[name: HexWeb.PublishTasks]]),
       worker(HexMirror.Order, [Order]),
-      #supervisor(HexWeb.Endpoint, []),
+      worker(HexMirror.DiffHandler, [Diff])
     ]
 
     opts = [strategy: :one_for_one, name: HexMirror.Supervisor]

@@ -2,7 +2,8 @@ defmodule HexMirror.Order do
   alias HexMirror.VerifyHostname
   use GenServer
   
-  @cdn_url "https://s3.amazonaws.com/s3.hex.pm"
+  #@cdn_url "https://s3.amazonaws.com/s3.hex.pm"
+  @cdn_url "http://s3.hex.pm.global.prod.fastly.net"
   @user_agent 'agent'
   @erlang_vendor 'application/vnd.hex+erlang'
   @secure_ssl_version {5, 3, 6}
@@ -43,15 +44,15 @@ defmodule HexMirror.Order do
     url = @cdn_url <> "/" <> "registry.ets.gz"
 
     http_opts = [ssl: ssl_opts(url)]
-    opts = [body_format: :binary, stream: 'REG']
+    opts = [body_format: :binary, stream: 'registry.ets.gz']
     url = String.to_char_list(url)
 
     request = {url, Map.to_list(headers)}
 
     case :httpc.request(:get, request, http_opts, opts, :hexmirror) do
       {:ok, response} ->
-       # handle_response(response)
         IO.puts "Downloading Registry"
+        HexMirror.DiffHandler.handle_diff(Diff)
       {:error, reason} ->
         IO.puts "Error response"
         {:http_error, reason, []}
