@@ -1,20 +1,4 @@
 # HexMirror
 
-**TODO: Add description**
-
-## Installation
-
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed as:
-
-  1. Add hexmirror to your list of dependencies in `mix.exs`:
-
-        def deps do
-          [{:hexmirror, "~> 0.0.1"}]
-        end
-
-  2. Ensure hexmirror is started before your application:
-
-        def application do
-          [applications: [:hexmirror]]
-        end
+This project is intended to facilitate syncronization of packages between private and public hex_web instances. It will communicate with public hex_web to synchronize newly added public packages, and will download and push the packages to the private hex_web database.
 
