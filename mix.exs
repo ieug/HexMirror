@@ -14,7 +14,7 @@ defmodule HexMirror.Mixfile do
   #
   # Type "mix help compile.app" for more information
   def application do
-    [applications: [:ssl, :inets, :logger], mod: {HexMirror, []}]
+    [applications: [:ssl, :inets, :logger, :phoenix, :postgrex], mod: {HexMirror, []}]
   end
 
   # Dependencies can be Hex packages:
@@ -27,6 +27,9 @@ defmodule HexMirror.Mixfile do
   #
   # Type "mix help deps" for more examples and options
   defp deps do
-    []
+    [
+     {:phoenix,             "~> 1.1"},
+     {:postgrex,            ">= 0.0.0"},
+      {:hex_web,  git: "https://github.com/hexpm/hex_web.git", tag: "master"}]
   end
 end
