@@ -2,6 +2,8 @@
 
 This project is intended to facilitate syncronization of packages between private and public hex_web instances. It will communicate with public hex_web to synchronize newly added public packages, and will download and push the packages to the private hex_web database. It is currentlly work in progress.
 
+![hex_mirror architecture github readme](https://cloud.githubusercontent.com/assets/1086619/17106643/6244d88c-528c-11e6-88e2-88e22ec3703b.png)
+
 # Getting started
 
 Edit the @hexmirror_home Macro on Line 4 of /lib/hex_mirror/diffHandler.ex file. This Macro tells HexMirror where registry archive should be downloaded during runtime.
