@@ -1,0 +1,446 @@
+<%# This file is auto-generated with 'mix run task_docs.exs' %>
+
+<h2>Mix tasks</h2>
+
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 id="hex" class="panel-title">
+        hex
+        <a href="#hex"><span class="glyphicon glyphicon-link pull-right"></span></a>
+      </h3>
+    </div>
+    <div class="panel-body">
+      <p><em>Prints Hex tasks and their information.</em></p>
+<p><code class="inline">mix hex</code></p>
+<p>Hex and some Mix tasks can be configured with the following environment
+variables:</p>
+<ul>
+<li><code class="inline">HEX_HOME</code> - Sets the directory where Hex stores the cache and
+configuration (Default: <code class="inline">~/.hex</code>)
+</li>
+<li><code class="inline">HEX_API</code> - Sets the API URL (Default: <code class="inline">https://hex.pm/api</code>)
+</li>
+<li><code class="inline">HEX_CDN</code> - Sets the CDN URL (Default: <code class="inline">https://s3.amazonaws.com/s3.hex.pm</code>)
+</li>
+</ul>
+
+    </div>
+  </div>
+
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 id="hex_build" class="panel-title">
+        hex.build
+        <a href="#hex_build"><span class="glyphicon glyphicon-link pull-right"></span></a>
+      </h3>
+    </div>
+    <div class="panel-body">
+      <p><em>Builds a new local version of your package.</em></p>
+<p>The package .tar file is created in the current directory, but is not pushed
+to the repository. An app named <code class="inline">foo</code> at version <code class="inline">1.2.3</code> will be built as
+<code class="inline">foo-1.2.3.tar</code>.</p>
+<p><code class="inline">mix hex.build</code></p>
+<h3>Configuration</h3>
+<ul>
+<li><p><code class="inline">:app</code> - Package name (required).</p>
+</li>
+<li><p><code class="inline">:version</code> - Package version (required).</p>
+</li>
+<li><p><code class="inline">:deps</code> - List of package dependencies (see Dependencies below).</p>
+</li>
+<li><p><code class="inline">:description</code> - Short description of the project.</p>
+</li>
+<li><code class="inline">:package</code> - Hex specific configuration (see Package configuration below).
+</li>
+</ul>
+<h3>Dependencies</h3>
+<p>Dependencies are defined in mix’s dependency format. But instead of using
+<code class="inline">:git</code> or <code class="inline">:path</code> as the SCM <code class="inline">:package</code> is used.</p>
+<pre><code>defp deps do
+  [ {:ecto, &quot;~&gt; 0.1.0&quot;},
+    {:postgrex, &quot;~&gt; 0.3.0&quot;},
+    {:cowboy, github: &quot;extend/cowboy&quot;} ]
+end</code></pre>
+<p>As can be seen Hex package dependencies works alongside git dependencies.
+Important to note is that non-Hex dependencies will not be used during
+dependency resolution and neither will be they listed as dependencies of the
+package.</p>
+<h3>Package configuration</h3>
+<p>Additional package metadata is optional, but highly recommended.</p>
+<ul>
+<li><p><code class="inline">:name</code> - Set this if the package name is not the same as the application
+ name.</p>
+</li>
+<li><p><code class="inline">:files</code> - List of files and directories to include in the package,
+can include wildcards. Defaults to <code class="inline">[&quot;lib&quot;, &quot;priv&quot;, &quot;mix.exs&quot;, &quot;README*&quot;,
+    &quot;readme*&quot;, &quot;LICENSE*&quot;, &quot;license*&quot;, &quot;CHANGELOG*&quot;, &quot;changelog*&quot;, &quot;src&quot;]</code>.</p>
+</li>
+<li><p><code class="inline">:maintainers</code> - List of names and/or emails of maintainers.</p>
+</li>
+<li><p><code class="inline">:licenses</code> - List of licenses used by the package.</p>
+</li>
+<li><p><code class="inline">:links</code> - Map of links relevant to the package.</p>
+</li>
+<li><code class="inline">:build_tools</code> - List of build tools that can build the package. Hex will
+try to automatically detect the build tools based on the files in the
+package. If a “rebar” or “rebar.config” file is present Hex will mark it
+as able to build with rebar. This detection can be overridden by setting
+this field.
+</li>
+</ul>
+
+    </div>
+  </div>
+
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 id="hex_config" class="panel-title">
+        hex.config
+        <a href="#hex_config"><span class="glyphicon glyphicon-link pull-right"></span></a>
+      </h3>
+    </div>
+    <div class="panel-body">
+      <p><em>Reads or updates Hex configuration file.</em></p>
+<pre><code>mix hex.config KEY [VALUE]</code></pre>
+<h3>Config keys</h3>
+<ul>
+<li><code class="inline">username</code> - Hex username
+</li>
+<li><code class="inline">key</code> - Hex API key
+</li>
+<li><code class="inline">api_url</code> - Hex API base URL (without trailing slash)
+</li>
+<li><code class="inline">cdn_url</code> - Hex CDN base URL (without trailing slash)
+</li>
+<li><code class="inline">http_proxy</code> - HTTP proxy server
+</li>
+<li><code class="inline">https_proxy</code> - HTTPS proxy server
+</li>
+</ul>
+<h3>CDN</h3>
+<p>Hex provides 3 different CDNs for the following areas:</p>
+<ul>
+<li>Americas (default) - <a href="https://s3.amazonaws.com/s3.hex.pm">https://s3.amazonaws.com/s3.hex.pm</a>
+</li>
+<li>Europe, Africa - <a href="https://s3-eu-west-1.amazonaws.com/s3-eu.hex.pm">https://s3-eu-west-1.amazonaws.com/s3-eu.hex.pm</a>
+</li>
+<li>Asia, Oceania - <a href="https://s3-ap-southeast-1.amazonaws.com/s3-asia.hex.pm">https://s3-ap-southeast-1.amazonaws.com/s3-asia.hex.pm</a>
+</li>
+</ul>
+<p>You can change the default CDN as follows:</p>
+<pre><code>mix hex.config cdn_url https://s3-eu-west-1.amazonaws.com/s3-eu.hex.pm</code></pre>
+
+    </div>
+  </div>
+
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 id="hex_docs" class="panel-title">
+        hex.docs
+        <a href="#hex_docs"><span class="glyphicon glyphicon-link pull-right"></span></a>
+      </h3>
+    </div>
+    <div class="panel-body">
+      <p><em>Publishes documentation for the current project and version.</em></p>
+<p>The documentation will be accessible at <code class="inline">https://hexdocs.pm/my_package/1.0.0</code>,
+<code class="inline">https://hexdocs.pm/my_package</code> will always redirect to the latest published
+version.</p>
+<p>Documentation will be generated by running the <code class="inline">mix docs</code> task. <code class="inline">ex_doc</code>
+provides this task by default, but any library can be used. Or an alias can be
+used to extend the documentation generation. The expected result of the task
+is the generated documentation located in the <code class="inline">docs/</code> directory with an
+<code class="inline">index.html</code> file.</p>
+<h3>Command line options</h3>
+<ul>
+<li><code class="inline">--revert VERSION</code> - Revert given version
+</li>
+</ul>
+
+    </div>
+  </div>
+
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 id="hex_info" class="panel-title">
+        hex.info
+        <a href="#hex_info"><span class="glyphicon glyphicon-link pull-right"></span></a>
+      </h3>
+    </div>
+    <div class="panel-body">
+      <p><em>Prints Hex package or system information.</em></p>
+<p><code class="inline">mix hex.info [PACKAGE [VERSION]]</code></p>
+<p>If <code class="inline">package</code> is not given, print system information. This includes when
+registry was last updated and current system version.</p>
+<p>If <code class="inline">package</code> is given, print information about the package. This includes all
+released versions and package metadata.</p>
+<p>If <code class="inline">package</code> and <code class="inline">version</code> is given print release information. This includes
+remote Git URL and Git ref, and all package dependencies.</p>
+
+    </div>
+  </div>
+
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 id="hex_key" class="panel-title">
+        hex.key
+        <a href="#hex_key"><span class="glyphicon glyphicon-link pull-right"></span></a>
+      </h3>
+    </div>
+    <div class="panel-body">
+      <p><em>Removes or lists API keys associated with your account.</em></p>
+<h4>Remove key</h4>
+<p>Removes given API key from account.</p>
+<p>The key can no longer be used to authenticate API requests.</p>
+<p><code class="inline">mix hex.key remove key_name</code></p>
+<h4>List keys</h4>
+<p>Lists all API keys associated with your account.</p>
+<p><code class="inline">mix hex.key list</code></p>
+
+    </div>
+  </div>
+
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 id="hex_outdated" class="panel-title">
+        hex.outdated
+        <a href="#hex_outdated"><span class="glyphicon glyphicon-link pull-right"></span></a>
+      </h3>
+    </div>
+    <div class="panel-body">
+      <p>Shows all packages that have a version mismatch between the registry and
+your mix.lock file.</p>
+<p>By default, it only shows top-level packages explicitly listed in the
+<code class="inline">mix.exs</code> file. All outdated packages can be displayed by using the <code class="inline">--all</code>
+command line option.</p>
+<p>If a dependency name is given all requirements on that dependency, from
+the entire dependency tree, are listed. This is useful if you are trying
+to figure why a package isn’t updating when you run <code class="inline">mix deps.update</code>.</p>
+<h3>Command line options</h3>
+<ul>
+<li><code class="inline">--all</code> - shows all outdated packages, including children of packages defined in <code class="inline">mix.exs</code>
+</li>
+<li><code class="inline">--pre</code> - include pre-releases when checking for newer versions
+</li>
+</ul>
+<p><em><code class="inline">mix hex.outdated [APP]</code></em></p>
+
+    </div>
+  </div>
+
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 id="hex_owner" class="panel-title">
+        hex.owner
+        <a href="#hex_owner"><span class="glyphicon glyphicon-link pull-right"></span></a>
+      </h3>
+    </div>
+    <div class="panel-body">
+      <p><em>Adds, removes or lists package owners.</em></p>
+<p>Package owners have full permissions to the package. They can publish and
+revert releases and even remove other package owners.</p>
+<h4>Add owner</h4>
+<p>Adds an owner to package by specifying the package name and email of the new
+owner.</p>
+<p><code class="inline">mix hex.owner add PACKAGE EMAIL</code></p>
+<h4>Remove owner</h4>
+<p>Removes an owner to package by specifying the package name and email of the new
+owner.</p>
+<p><code class="inline">mix hex.owner remove PACKAGE EMAIL</code></p>
+<h4>List owners</h4>
+<p>Lists all owners of given package.</p>
+<p><code class="inline">mix hex.owner list PACKAGE</code></p>
+<h4>List owned packages</h4>
+<p>Lists all packages owned by the current user.</p>
+<p><code class="inline">mix hex.owner packages</code></p>
+
+    </div>
+  </div>
+
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 id="hex_public_keys" class="panel-title">
+        hex.public_keys
+        <a href="#hex_public_keys"><span class="glyphicon glyphicon-link pull-right"></span></a>
+      </h3>
+    </div>
+    <div class="panel-body">
+      <p><em>Public keys are used by Hex to verify the registry file.</em></p>
+<p>Hex by default ships with a public key for Hex.pm but new
+ones can be added for other repositories.</p>
+<p>To list all available keys:</p>
+<pre><code>$ mix hex.public_keys</code></pre>
+<p>To list all available keys showing the keys themselves:</p>
+<pre><code>$ mix hex.public_keys --detailed</code></pre>
+<p>To add a new key:</p>
+<pre><code>$ mix hex.public_keys URL_TO_REPO LOCAL_PATH_TO_KEY</code></pre>
+<p>Be careful when adding new keys. Only add keys from sources you
+trust.</p>
+<p>Public keys are by default stored in your HEX_HOME under the
+public_keys directory.</p>
+<h3>Command line options</h3>
+<ul>
+<li><code class="inline">--force</code> - forces installation without a shell prompt; primarily
+intended for automation in build systems like <code class="inline">make</code>
+</li>
+</ul>
+
+    </div>
+  </div>
+
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 id="hex_publish" class="panel-title">
+        hex.publish
+        <a href="#hex_publish"><span class="glyphicon glyphicon-link pull-right"></span></a>
+      </h3>
+    </div>
+    <div class="panel-body">
+      <p><em>Publishes a new version of your package and update the package.</em></p>
+<p><code class="inline">mix hex.publish</code></p>
+<p>If it is a new package being published it will be created and the user
+specified in <code class="inline">username</code> will be the package owner. Only package owners can
+publish.</p>
+<p>A published version can be amended or reverted with <code class="inline">--revert</code> up to one hour
+after its publication. If you want to revert a publication that is more than
+one hour old you need to contact an administrator.</p>
+<h3>Command line options</h3>
+<ul>
+<li><code class="inline">--revert VERSION</code> - Revert given version
+</li>
+</ul>
+<h3>Configuration</h3>
+<ul>
+<li><p><code class="inline">:app</code> - Package name (required).</p>
+</li>
+<li><p><code class="inline">:version</code> - Package version (required).</p>
+</li>
+<li><p><code class="inline">:deps</code> - List of package dependencies (see Dependencies below).</p>
+</li>
+<li><p><code class="inline">:description</code> - Short description of the project.</p>
+</li>
+<li><code class="inline">:package</code> - Hex specific configuration (see Package configuration below).
+</li>
+</ul>
+<h3>Dependencies</h3>
+<p>Dependencies are defined in mix’s dependency format. But instead of using
+<code class="inline">:git</code> or <code class="inline">:path</code> as the SCM <code class="inline">:package</code> is used.</p>
+<pre><code>defp deps do
+  [ {:ecto, &quot;~&gt; 0.1.0&quot;},
+    {:postgrex, &quot;~&gt; 0.3.0&quot;},
+    {:cowboy, github: &quot;extend/cowboy&quot;} ]
+end</code></pre>
+<p>As can be seen Hex package dependencies works alongside git dependencies.
+Important to note is that non-Hex dependencies will not be used during
+dependency resolution and neither will be they listed as dependencies of the
+package.</p>
+<h3>Package configuration</h3>
+<p>Additional metadata of the package can optionally be defined, but it is very
+recommended to do so.</p>
+<ul>
+<li><p><code class="inline">:name</code> - Set this if the package name is not the same as the application
+ name.</p>
+</li>
+<li><p><code class="inline">:files</code> - List of files and directories to include in the package,
+can include wildcards. Defaults to <code class="inline">[&quot;lib&quot;, &quot;priv&quot;, &quot;mix.exs&quot;, &quot;README*&quot;,
+    &quot;readme*&quot;, &quot;LICENSE*&quot;, &quot;license*&quot;, &quot;CHANGELOG*&quot;, &quot;changelog*&quot;, &quot;src&quot;]</code>.</p>
+</li>
+<li><p><code class="inline">:maintainers</code> - List of names and/or emails of maintainers.</p>
+</li>
+<li><p><code class="inline">:licenses</code> - List of licenses used by the package.</p>
+</li>
+<li><p><code class="inline">:links</code> - Map of links relevant to the package.</p>
+</li>
+<li><code class="inline">:build_tools</code> - List of build tools that can build the package. Hex will
+try to automatically detect the build tools, it will do this based on the
+files in the package. If a “rebar” or “rebar.config” file is present Hex
+will mark it as able to build with rebar. This detection can be overridden
+by setting this field.
+</li>
+</ul>
+
+    </div>
+  </div>
+
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 id="hex_registry" class="panel-title">
+        hex.registry
+        <a href="#hex_registry"><span class="glyphicon glyphicon-link pull-right"></span></a>
+      </h3>
+    </div>
+    <div class="panel-body">
+      <p><em>Hex registry tasks.</em></p>
+<h4>Fetch registry</h4>
+<p>Updates registry file.</p>
+<p><code class="inline">mix hex.registry fetch</code></p>
+<h4>Dump registry</h4>
+<p>Copies registry file to the given path.</p>
+<p><code class="inline">mix hex.registry dump &lt;path&gt;</code></p>
+<h4>Load registry</h4>
+<p>Takes registry file from the given path.</p>
+<p><code class="inline">mix hex.registry load &lt;path&gt;</code></p>
+<p>The purpose of dumping and loading registry file
+is to assist with isolate dependency resolution.
+There is <code class="inline">HEX_OFFLINE</code> environment variable available
+to run Hex in offline mode.</p>
+
+    </div>
+  </div>
+
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 id="hex_search" class="panel-title">
+        hex.search
+        <a href="#hex_search"><span class="glyphicon glyphicon-link pull-right"></span></a>
+      </h3>
+    </div>
+    <div class="panel-body">
+      <p><em>Displays packages matching the given search query.</em></p>
+<p><code class="inline">mix hex.search PACKAGE</code></p>
+
+    </div>
+  </div>
+
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 id="hex_user" class="panel-title">
+        hex.user
+        <a href="#hex_user"><span class="glyphicon glyphicon-link pull-right"></span></a>
+      </h3>
+    </div>
+    <div class="panel-body">
+      <p><em>Hex user tasks.</em></p>
+<h4>Register a new user</h4>
+<p><code class="inline">mix hex.user register</code></p>
+<h4>Print the current user</h4>
+<p><code class="inline">mix hex.user whoami</code></p>
+<h4>Authorize a new user</h4>
+<p>Authorizes a new user on the local machine by generating a new API key and
+storing it in the Hex config.</p>
+<p><code class="inline">mix hex.user auth</code></p>
+<h4>Deauthorize the user</h4>
+<p>Deauthorizes the user from the local machine by removing the API key from the
+Hex config.</p>
+<p><code class="inline">mix hex.user deauth</code></p>
+<h4>Test authentication</h4>
+<p>Tests if authentication works with the stored API key.</p>
+<p><code class="inline">mix hex.user test</code></p>
+<h4>Reset user password</h4>
+<p><code class="inline">mix hex.user reset password</code></p>
+
+    </div>
+  </div>
+

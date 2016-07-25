@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="<%= description(assigns) %>">
+    <%= canonical_url(assigns) %>
+    <link rel="search" type="application/opensearchdescription+xml" title="Hex" href="<%= static_path(HexWeb.Endpoint, "/hexsearch.xml") %>">
+    <link rel="stylesheet" href="<%= static_path(HexWeb.Endpoint, "/css/main.css") %>">
+    <title><%= title(assigns) %></title>
+    <link rel="shortcut icon" href="<%= static_path(HexWeb.Endpoint, "/favicon.png") %>">
+  </head>
+  <body>
+    <nav class="navbar navbar-default navbar-static-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+
+          <a class="navbar-brand" href="/">
+            <img src="<%= static_path(HexWeb.Endpoint, "/images/hex.png") %>" srcset="<%= static_path(HexWeb.Endpoint, "/images/hex.png") %> 1x, <%= static_path(HexWeb.Endpoint, "/images/hex@2.png") %> 2x, <%= static_path(HexWeb.Endpoint, "/images/hex@3.png") %> 3x">
+          </a>
+        </div>
+
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li<%= active(assigns, :packages) %>><a href="<%= package_path(HexWeb.Endpoint, :index) %>">Packages</a></li>
+            <li<%= active(assigns, :docs) %> class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Documentation <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+                <li class="dropdown-header menu-dropdown-header">Mix</li>
+                <li><a href="<%= docs_path(HexWeb.Endpoint, :usage) %>">Usage</a></li>
+                <li><a href="<%= docs_path(HexWeb.Endpoint, :publish) %>">Publishing packages</a></li>
+                <li><a href="<%= docs_path(HexWeb.Endpoint, :tasks) %>">Tasks</a></li>
+                <li role="separator" class="divider"></li>
+                <li class="dropdown-header menu-dropdown-header">Rebar3</li>
+                <li><a href="<%= docs_path(HexWeb.Endpoint, :rebar3_usage) %>">Usage</a></li>
+                <li><a href="<%= docs_path(HexWeb.Endpoint, :rebar3_publish) %>">Publishing packages</a></li>
+                <li><a href="http://www.rebar3.org/v3.0/docs/hex-package-management">Tasks</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="<%= docs_path(HexWeb.Endpoint, :coc) %>">Code of Conduct</a></li>
+                <li><a href="<%= docs_path(HexWeb.Endpoint, :mirrors) %>">Mirrors</a></li>
+                <li><a href="<%= docs_path(HexWeb.Endpoint, :public_keys) %>">Public keys</a></li>
+                <!-- <li><a href="<%= docs_path(HexWeb.Endpoint, :faq) %>">FAQ</a></li> -->
+              </ul>
+            </li>
+          </ul>
+
+          <%= form_tag(package_path(HexWeb.Endpoint, :index), method: "get", class: "navbar-form navbar-right", role: "search") do %>
+            <div class="input-group">
+              <input type="search" class="form-control" placeholder="Search packages" name="search" value="<%= search(assigns) %>" tabindex="1">
+              <input type="hidden" name="sort" value="downloads">
+              <label class="sr-only" for="inputSearchPackages">Search packages</label>
+              <span class="input-group-btn">
+                <button type="submit" class="btn btn-default" tabindex="1">
+                  <span class="glyphicon glyphicon-search"></span>
+                </button>
+              </span>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container" style="padding-bottom: 30px;">

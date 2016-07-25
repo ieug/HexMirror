@@ -28,3 +28,6 @@ The following packages are not syched:
 
 ```
 
+# Contributing to this project
+
+Feedback wanted! Please report at https://github.com/ieug/HexMirror/issues
